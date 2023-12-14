@@ -2,20 +2,11 @@
 #   Project 04-ilscreen
 
     FIE - Mecatronica
-    DLC - JSD - EAM
 
+##  Módulo para MPU6050
 
-##  Creating moduke for IL9341
+    De proyectos varios
 
-    Taken from project VELOS 2.0
+    Lectura de datos de MPU6050
 
-    See doc/README.md for further documentation
-
-    For convenience, in doc there is also a README.pdf
-
-
-
-
-
-
-
+    Impresión por Serial de Yaw, Pitch y Roll
