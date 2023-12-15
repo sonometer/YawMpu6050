@@ -1,5 +1,5 @@
 .pio/build/esp32doit-devkit-v1/src/main.cpp.o: src/main.cpp \
- .pio/libdeps/esp32doit-devkit-v1/I2Cdev/I2Cdev.h \
+ .pio/libdeps/esp32doit-devkit-v1/I2Cdevlib-Core/I2Cdev.h \
  /home/matias/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  /home/matias/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  /home/matias/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/FreeRTOS.h \
@@ -134,6 +134,7 @@
  /home/matias/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  /home/matias/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
  /home/matias/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
- .pio/libdeps/esp32doit-devkit-v1/MPU6050/MPU6050_6Axis_MotionApps20.h \
- .pio/libdeps/esp32doit-devkit-v1/MPU6050/MPU6050.h \
- .pio/libdeps/esp32doit-devkit-v1/MPU6050/helper_3dmath.h src/MpuMati.h
+ .pio/libdeps/esp32doit-devkit-v1/I2Cdevlib-MPU6050/MPU6050_6Axis_MotionApps20.h \
+ .pio/libdeps/esp32doit-devkit-v1/I2Cdevlib-MPU6050/MPU6050.h \
+ .pio/libdeps/esp32doit-devkit-v1/I2Cdevlib-MPU6050/helper_3dmath.h \
+ src/MpuMati.h
