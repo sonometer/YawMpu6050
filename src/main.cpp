@@ -12,5 +12,5 @@ void setup() {
 } 
 
 void loop() {
-  mpuController.processMPUData();
+mpuController.processMPUData();
 }

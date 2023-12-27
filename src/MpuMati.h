@@ -1,3 +1,38 @@
+/**
+ * Controlador MPU6050 con DMP
+ * Este programa sirve como controlador para el sensor MPU6050 para obtener datos precisos de aceleración y giroscopio. 
+ * 
+ * Clase MPUController:
+ * - initializeMPU(): Inicializa el MPU6050 y configura el DMP. Establece la velocidad de comunicación I2C, 
+ * activa el MPU6050 y configura la sensibilidad del acelerómetro y giroscopio. Además, inicializa el DMP y 
+ * configura los offsets del MPU6050 para corregir errores.
+ * - processMPUData(): Procesa los datos del MPU6050 utilizando el DMP y muestra el ángulo de yaw en grados en la consola.
+ * 
+ * Métodos Privados:
+ * - setMPUOffsets(): Configura los offsets del MPU6050 con valores obtenidos de la calibración. Es recomendable ejecutar el 
+ * programa de calibración proporcionado en la carpeta /calibrar para obtener estos valores específicos para cada sensor.
+ * - printYawAngle(): Muestra el ángulo de yaw en la consola. La información se presenta en grados.
+ * - printAngles(): Muestra los ángulos de yaw, pitch y roll en la consola, también en grados.
+ * 
+ * Variables y Estructuras de Datos:
+ * - mpu: Instancia de la clase MPU6050 para interactuar con el sensor.
+ * - devStatus: Estado de inicialización del DMP.
+ * - packetSize: Tamaño del paquete FIFO del DMP.
+ * - fifoBuffer: Búfer FIFO para almacenar datos del DMP.
+ * - q: Cuaternión para almacenar datos de orientación.
+ * - gravity: VectorFloat para almacenar la gravedad calculada.
+ * - ypr: Matriz de ángulos de yaw, pitch y roll.
+ * 
+ * Variables Adicionales:
+ * - dmpReady: Estado para verificar si el DMP está listo. Actualmente establecido en true.
+ * 
+ * Notas Adicionales:
+ * Es recomendable ejecutar el programa de calibración incluido para obtener offsets precisos para el sensor MPU6050.
+ * La clase MPUController proporciona métodos para inicializar el sensor y procesar sus datos, facilitando la 
+ * integración del MPU6050 en proyectos más grandes.
+ * 
+*/
+
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "Wire.h"
@@ -22,8 +57,6 @@ public:
     */
     mpu.initialize();
     
-    pinMode(INTERRUPT_PIN, INPUT);
-
     devStatus = mpu.dmpInitialize();
     
     if (devStatus == 0) {
@@ -64,13 +97,13 @@ private:
   VectorFloat gravity;
   float ypr[3];
 
-  const int INTERRUPT_PIN = 2;
-
   bool dmpReady = true;
 
   /**
    * Configura los offsets del MPU6050.
-   * (Tal vez esté bueno que se pueda modificar desde el main)
+   * Se utilizan valores obtenidos de la calibración
+   * Para obtener los valores de un nuevo sensor hay que ejecutar
+   * el programa de calibración incluido en la carpeta /src
    */
   void setMPUOffsets() {
     mpu.setXGyroOffset(73);
