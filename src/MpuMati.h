@@ -36,6 +36,7 @@
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "Wire.h"
+#include "math.h"
 
 class MPUController {
 public:
@@ -84,7 +85,8 @@ public:
       mpu.dmpGetQuaternion(&q, fifoBuffer);
       mpu.dmpGetGravity(&gravity, &q);
       mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-      printYawAngle();
+      //printYawAngle();
+      printCorrectedYawAngle();
     }
   }
 
@@ -96,7 +98,7 @@ private:
   Quaternion q;
   VectorFloat gravity;
   float ypr[3];
-
+  
   bool dmpReady = true;
 
   /**
@@ -117,6 +119,16 @@ private:
    */
   void printYawAngle() {
     Serial.println(int(ypr[0] * 180/M_PI)+179);
+  }
+
+  /**
+   * Muestra el ángulo de yaw corregido en la consola.
+   * Se emplea una corrección trigonométrica básica para evaluar el impacto
+   * generado por PITCH y ROLL
+  */
+  void printCorrectedYawAngle(){
+    float compensatedYaw = ypr[0] - sin(radians(ypr[1])) * tan(radians(ypr[2]));
+    Serial.println(int(compensatedYaw * 180/M_PI) + 179);
   }
   
   /**
