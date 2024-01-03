@@ -123,7 +123,7 @@ private:
 
   /**
    * Muestra el ángulo de yaw corregido en la consola.
-   * Se emplea una corrección trigonométrica básica para evaluar el impacto
+   * Se emplea una corrección trigonométrica básica para minimizar el impacto
    * generado por PITCH y ROLL
   */
   void printCorrectedYawAngle(){
